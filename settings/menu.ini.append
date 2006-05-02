@@ -1,0 +1,21 @@
+[NavigationPart]
+Part[ezcddbnavigationpart]=CDDB
+
+[TopAdminMenu]
+Tabs[]=cddb
+
+[Topmenu_cddb]
+NavigationPartIdentifier=ezcddbnavigationpart
+Name=CDDB
+Tooltip=Retrieve audio CD information from CDDB servers.
+URL[]
+URL[default]=cddb/search
+Enabled[]
+Enabled[default]=true
+Enabled[browse]=false
+Enabled[edit]=false
+Shown[]
+Shown[default]=true
+Shown[edit]=true
+Shown[navigation]=true
+Shown[browse]=false
