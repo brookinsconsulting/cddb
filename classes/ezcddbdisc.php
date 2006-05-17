@@ -3,9 +3,11 @@
 class eZCDDBDisc
 {
     var $netCDDBDisc;
+    var $CDDBCharset;
 
-    function eZCDDBDisc( $Net_CDDB_Disc )
+    function eZCDDBDisc( $Net_CDDB_Disc, $CDDBCharset = 'iso-8859-1' )
     {
+        $this->CDDBCharset = $CDDBCharset;
         $this->netCDDBDisc = $Net_CDDB_Disc;
     }
 
@@ -13,7 +15,8 @@ class eZCDDBDisc
     {
         return array( 'discid', 
                       'title', 
-                      'artist', 
+                      'artist',
+                      'category',
                       'genre', 
                       'num_tracks', 
                       'length', 
@@ -85,6 +88,17 @@ class eZCDDBDisc
     
     function attribute( $key )
     {
+        include_once( 'lib/ezi18n/classes/eztextcodec.php' );
+        $charset = eZTextCodec::internalCharset();
+
+        include_once( 'lib/ezi18n/classes/ezcharsetinfo.php' );
+        $charset = eZCharsetInfo::realCharsetCode( $charset );
+
+        $cddbCharset = eZCharsetInfo::realCharsetCode( $this->CDDBCharset );
+
+        include_once( 'lib/ezi18n/classes/eztextcodec.php' );
+        $codec =& eZTextCodec::instance( $cddbCharset, $charset, false );
+
         switch( $key )
         {
             case 'discid':
@@ -94,17 +108,22 @@ class eZCDDBDisc
 
             case 'title':
             {
-                return $this->netCDDBDisc->getTitle();
+                return $codec->convertString( $this->netCDDBDisc->getTitle() );
             } break;
             
             case 'artist':
             {
-                return $this->netCDDBDisc->getArtist();
+                return $codec->convertString( $this->netCDDBDisc->getArtist() );
+            } break;
+
+            case 'category':
+            {
+                return $codec->convertString( $this->netCDDBDisc->getCategory() );
             } break;
             
             case 'genre':
             {
-                return $this->netCDDBDisc->getGenre();
+                return $codec->convertString( $this->netCDDBDisc->getGenre() );
             } break;
             
             case 'num_tracks':
@@ -137,7 +156,7 @@ class eZCDDBDisc
                 $trackArray = array();
                 for( $i = 0; $i < $this->netCDDBDisc->numTracks(); $i++ )
                 {
-                    $trackArray[] = array( 'title' => $this->netCDDBDisc->getTrackTitle($i),
+                    $trackArray[] = array( 'title' => $codec->convertString( $this->netCDDBDisc->getTrackTitle($i) ),
                                            'offset' => $this->netCDDBDisc->getTrackOffset($i),
                                            'length' => $this->getTrackLength($i),
                                            'length_formatted' => $this->getTrackLength($i, true)

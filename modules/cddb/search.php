@@ -5,9 +5,9 @@ include_once( 'kernel/common/template.php' );
 $module = $Params['Module'];
 $tpl =& templateInit();
 
-require_once( 'Net/CDDB.php' );
+require_once( 'Net/CDDB/client.php' );
 
-$cddbClient = new Net_CDDB();
+$cddbClient = new Net_CDDB_Client();
 
 if ( $module->currentAction() == 'search' &&
      $module->hasActionParameter( 'offsets' ) && $module->actionParameter( 'offsets' ) != '' &&

@@ -27,8 +27,9 @@ $ViewList['search'] = array(
 $ViewList['discinfo'] = array(
     'script' => 'discinfo.php',
     'ui_context' => 'navigation',
-    'params' => array( 'DiscID', 'Genre' ),
-    'default_navigation_part' => 'ezcddbnavigationpart'
+    'params' => array( 'Category', 'DiscID' ),
+    'default_navigation_part' => 'ezcddbnavigationpart',
+    'single_post_actions' => array( 'ImportButton' => 'import' )
 );
 
 $ViewList['submit'] = array(
@@ -42,6 +43,13 @@ $ViewList['settings'] = array(
     'script' => 'settings.php',
     'ui_context' => 'setup',
     'params' => array(),
+    'default_navigation_part' => 'ezcddbnavigationpart'
+);
+
+$ViewList['import'] = array(
+    'script' => 'import.php',
+    'ui_context' => 'edit',
+    'params' => array( 'Category', 'DiscID' ),
     'default_navigation_part' => 'ezcddbnavigationpart'
 );
 

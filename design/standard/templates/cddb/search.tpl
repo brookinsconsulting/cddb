@@ -91,14 +91,14 @@
     <th class="tight">&nbsp;</th>
     <th>Artist</th>
     <th>Title</th>
-    <th>CDDB Genre</th>
+    <th>CDDB category</th>
 </tr>
 {foreach $discs as $disc sequence array( 'bglight', 'bgdark' ) as $sequence}
     <tr class="{$sequence}">
-        <td><a href={concat('cddb/discinfo/', $disc.discid, '/', $disc.genre)|ezurl}><img src={'cddb/16x16/cdaudio_unmount.png'|ezimage} /></a></td>
+        <td><a href={concat('cddb/discinfo/', $disc.category, '/', $disc.discid)|ezurl}><img src={'cddb/16x16/cdaudio_unmount.png'|ezimage} /></a></td>
         <td>{$disc.artist|wash}</td>
         <td>{$disc.title|wash}</td>
-        <td>{$disc.genre|wash}</td>
+        <td>{$disc.category|wash}</td>
     </tr>
 {/foreach}
 </table
