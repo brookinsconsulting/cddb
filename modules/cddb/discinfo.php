@@ -113,6 +113,7 @@ include_once( 'extension/cddb/classes/ezcddbdisc.php' );
 $eZDisc = new eZCDDBDisc( $disc, $cddbCharset );
 
 $tpl->setVariable( 'disc', $eZDisc );
+$tpl->setVariable( 'category', $category );
 
 $Result = array();
 $Result['content'] = & $tpl->fetch( 'design:cddb/discinfo.tpl' );

@@ -12,7 +12,7 @@
 {* DESIGN: Content START *}<div class="box-ml"><div class="box-mr"><div class="box-content">
 
 <div class="context-information">
-<p>{'ID'|i18n( 'extension/cddb' )}: {$disc.category|wash} / {$disc.discid|wash}, {'revision'|i18n( 'extension/cddb' )}: {$disc.revision|wash}</p>
+<p>{'ID'|i18n( 'extension/cddb' )}: {$category|wash} / {$disc.discid|wash}, {'revision'|i18n( 'extension/cddb' )}: {$disc.revision|wash}</p>
 </div>
 
 <div class="context-attributes">
