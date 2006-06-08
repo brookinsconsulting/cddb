@@ -52,9 +52,9 @@ if ( file_exists( $cachePath ) )
         $record = Net_CDDB_Utilities::parseRecord( $cddbEntry );
         
         require_once( 'Net/CDDB/Disc.php' );
-        $disc = new Net_CDDB_Disc($record['DISCID'], $record['ARTIST'], $record['TITLE'], $category, $record['GENRE'], $record['YEAR'], $record['TRACKS'], $record['LENGTH'], $record['REVISION'], $record['PLAYORDER']);
+        $disc = new Net_CDDB_Disc( $record );
 
-        include_once( 'lib/ezi18n/classes/eztextcodec.php' );        
+        include_once( 'lib/ezi18n/classes/eztextcodec.php' );
         $cddbCharset = eZTextCodec::internalCharset();
     }
 }
