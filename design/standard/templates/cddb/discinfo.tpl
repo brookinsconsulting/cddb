@@ -1,4 +1,4 @@
-<form method="post" action={concat('/cddb/discinfo/',$disc.category,'/',$disc.discid)|ezurl}>
+<form method="post" action={concat('/cddb/discinfo/',$category,'/',$disc.discid)|ezurl}>
 <div class="context-block">
 
 {* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
@@ -33,7 +33,7 @@
 
 <div class="block">
 <div class="left">
-<input type="submit" class="button" value="Import" name="ImportButton">
+<input type="submit" class="button" value="Import" name="ImportButton" />
 </div>
 
 <div class="break"></div>
@@ -63,12 +63,14 @@
 <table class="list" cellspacing="0">
 <tr>
     <th class="tight">N°</th>
+    <th>Artist</th>
     <th>Title</th>
     <th>Length</th>
 </tr>
 {foreach $disc.tracks as $index => $track sequence array( 'bglight', 'bgdark' ) as $sequence}
     <tr class="{$sequence}">
         <td style="text-align:right;">{$index|inc}</td>
+        <td>{$track.artist|wash}</td>
         <td>{$track.title|wash}</td>
         <td>{$track.length_formatted|wash}</td>
     </tr>

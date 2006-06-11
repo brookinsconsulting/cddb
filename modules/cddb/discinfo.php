@@ -88,6 +88,11 @@ if ( !$disc )
 
     $disc = $cddbClient->getDetailsByDiscId( $category, $discID );
     $cddbClient->disconnect();
+    
+    if ( !$disc )
+    {
+        return $Module->handleError( EZ_ERROR_KERNEL_NOT_AVAILABLE, 'kernel' );
+    }
 
     include_once( 'lib/ezi18n/classes/eztextcodec.php' );
     $charset = eZTextCodec::internalCharset();

@@ -50,7 +50,8 @@ $ViewList['import'] = array(
     'script' => 'import.php',
     'ui_context' => 'edit',
     'params' => array( 'Category', 'DiscID' ),
-    'default_navigation_part' => 'ezcddbnavigationpart'
+    'default_navigation_part' => 'ezcddbnavigationpart',
+    'single_post_actions' => array( 'ImportButton' => 'import' )
 );
 
 $FunctionList = array();

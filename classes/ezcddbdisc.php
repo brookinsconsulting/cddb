@@ -54,6 +54,14 @@ class eZCDDBDisc
         }
         
     }
+    
+    function formatTrackLength( $length )
+    {
+        $minutes = floor( $length / 60 );
+        $seconds = $length % 60;
+            
+        return sprintf( '%02d', $minutes ) . ':' . sprintf( '%02d', $seconds );
+    }
 
     function getTrackLength($track_num, $formatted = false)
     {
@@ -156,10 +164,12 @@ class eZCDDBDisc
                 $trackArray = array();
                 for( $i = 0; $i < $this->netCDDBDisc->numTracks(); $i++ )
                 {
-                    $trackArray[] = array( 'title' => $codec->convertString( $this->netCDDBDisc->getTrackTitle($i) ),
-                                           'offset' => $this->netCDDBDisc->getTrackOffset($i),
-                                           'length' => $this->getTrackLength($i),
-                                           'length_formatted' => $this->getTrackLength($i, true)
+                    $track = $this->netCDDBDisc->getTrack( $i );
+                    $trackArray[] = array( 'artist' => $codec->convertString( $track->getArtist() ),
+                                           'title' => $codec->convertString( $track->getTitle() ),
+                                           'offset' => $track->getOffset(),
+                                           'length' => $track->getLength(),
+                                           'length_formatted' => $this->formatTrackLength( $track->getLength() )
                                          );
                 }
                 return $trackArray;
