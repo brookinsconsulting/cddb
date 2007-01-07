@@ -5,7 +5,7 @@ include_once( 'kernel/common/template.php' );
 $module = $Params['Module'];
 $tpl =& templateInit();
 
-require_once( 'Net/CDDB/client.php' );
+require_once( 'Net/CDDB/Client.php' );
 
 $cddbClient = new Net_CDDB_Client();
 
